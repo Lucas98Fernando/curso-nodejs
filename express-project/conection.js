@@ -39,6 +39,7 @@ const Postagem = sequelize.define('postagens', {
 })
 
 // Criando registros na tabela postagens, esse comando é semelhante ao INSERT INTO
+
 // Postagem.create({
 //     título: 'Aprendendo node.js e mysql',
 //     conteudo: 'Aprendendo a realizar conexões ao MySQL com o Node.js, utilizando o Sequelize"'
@@ -59,13 +60,14 @@ const Usuario = sequelize.define('usuarios', {
     }
 })
 
-// Criando registros na tabela usuarios, esse comando é semelhante ao INSERT INTO 
-Usuario.create({
-    nome: 'Lucas',
-    sobrenome: 'Fernando',
-    idade: 23,
-    email: 'lucas@gmail.com'
-})
+// Criando registros na tabela usuarios, esse comando é semelhante ao INSERT INTO
+
+// Usuario.create({
+//     nome: 'Lucas',
+//     sobrenome: 'Fernando',
+//     idade: 23,
+//     email: 'lucas@gmail.com'
+// })
 
 // Criando o model das postagens e de usuarios e sincronizando no MySQL
 // É recomendado excluir ou comentar os comandos abaixo, para evitar que as tabelas sejam criada novamente ao executar o nodemon
