@@ -5,8 +5,6 @@ const app = express()
 // O handlebars é um "template engine"
 // Importando o módulo do handlebars do express
 const handlebars = require('express-handlebars')
-// Importando o módulo do Sequelize
-const Sequelize = require('sequelize')
 
 // Configuração do template engine do handlebars
 app.engine('handlebars', handlebars({
@@ -14,18 +12,23 @@ app.engine('handlebars', handlebars({
 }))
 app.set('view engine', 'handlebars')
 
-// Conexão com o MySQL
-// Configurações para conexão com o banco de dados 
-// Os parâmetros que ele recebe é o nome do banco, nome do usuário, senha e um objeto 
-const sequelize = new Sequelize('bancoTeste', 'root', 'lucas98', {
-    host: 'localhost',
-    dialect: 'mysql'
-})
+// Configuração com o express para o dados do body da requisição HTTP
+app.use(express.urlencoded({
+    extended: false
+}))
+app.use(express.json())
 
 // Rotas
 app.get('/cadastro', function (req, res) {
     // Rederizando o arquivo de formulário handlebar que está na pasta views, não precisa colocar a extensão
     res.render('formulario')
+})
+
+// Essa rota só será acessada quando houver uma requisição HTTP com o método POST
+// Não é possível acessar essa rota diretamente via URL
+app.post('/adicionar', function (req, res) {
+    // Pegando dados do formulário e exibindo na resposta
+    res.send(`O título da postagem: ${req.body.titulo} | O conteúdo da postagem: ${req.body.conteudo}`)
 })
 
 // Criando o servidor com o express, o listen é uma função do tipo callback e com isso podemos executar alguns método dentro dela, ele deve ser o último método do arquivo
