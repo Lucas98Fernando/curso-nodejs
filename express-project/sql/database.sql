@@ -1,4 +1,7 @@
 /* 
+    // Acessar o mysql pelo terminal, utilizando o usuário root, logo em seguida será solicitada a senha
+    mysql -h localhost -u root -p
+
     - Comandos importantes do MySQL
 
     SHOW DATABASES; // Exibe todos os bancos de dados criados
@@ -22,7 +25,27 @@ INSERT INTO usuarios(nome, email, idade)
 VALUES ('Lucas', 'lucas@gmail.com', 23);
 
 /* 
-    - Visualizando dados cadastrados:
+    - Visualizando dados:
 
-    SELECT * FROM usuarios 
+    SELECT * FROM usuarios;
+
+    // Utilizando condicional
+    SELECT * FROM usuarios WHERE idade > 23;
+
+
+    - Excluindo dados:
+
+    // Exclui todos dados da tabela
+    DELETE FROM usuarios;
+
+    // Exclusão com condicional
+    DELETE FROM usuarios WHERE nome = 'Pedro';
+
+    - Atualizando dados:
+
+    // Atualiza todos os valores da coluna nome de todos os registros da tabela usuarios
+    UPDATE usuarios SET nome = 'Novo nome';
+
+    // Atualizando com condicional
+    UPDATE usuarios SET nome = 'Lucas Fernando' WHERE nome = 'Lucas';
 */
