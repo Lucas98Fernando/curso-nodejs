@@ -4,6 +4,8 @@
 
     - Comandos importantes do MySQL
 
+    CREATE DATABASE nomedobanco; // Cria um banco de dados
+
     SHOW DATABASES; // Exibe todos os bancos de dados criados
 
     USE nomedobanco; // Define qual banco de dados você deseja utilizar no momento
