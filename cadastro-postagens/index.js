@@ -5,6 +5,8 @@ const app = express()
 // O handlebars é um "template engine"
 // Importando o módulo do handlebars do express
 const handlebars = require('express-handlebars')
+// Importando o model de Post
+const Post = require('./models/Post')
 
 // Configuração do template engine do handlebars
 app.engine('handlebars', handlebars({
@@ -19,6 +21,8 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 // Rotas
+app.get('/', (req, res) => res.render('home'))
+
 app.get('/cadastro', function (req, res) {
     // Rederizando o arquivo de formulário handlebar que está na pasta views, não precisa colocar a extensão
     res.render('formulario')
@@ -28,7 +32,18 @@ app.get('/cadastro', function (req, res) {
 // Não é possível acessar essa rota diretamente via URL
 app.post('/adicionar', function (req, res) {
     // Pegando dados do formulário e exibindo na resposta
-    res.send(`O título da postagem: ${req.body.titulo} | O conteúdo da postagem: ${req.body.conteudo}`)
+    // res.send(`O título da postagem: ${req.body.titulo} | O conteúdo da postagem: ${req.body.conteudo}`)
+
+    // Pegando os dados do formulário e inserindo no banco
+    Post.create({
+            titulo: req.body.titulo,
+            conteudo: req.body.conteudo
+        })
+        .then(function () {
+            // res.send('O post foi criado com sucesso!')
+            res.redirect('/')
+        })
+        .catch(erro => res.send(`Ocorreu um erro: ${erro}`))
 })
 
 // Criando o servidor com o express, o listen é uma função do tipo callback e com isso podemos executar alguns método dentro dela, ele deve ser o último método do arquivo
