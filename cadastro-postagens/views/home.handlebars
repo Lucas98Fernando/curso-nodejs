@@ -3,14 +3,27 @@
         <h1 class="font-weight-bold">Posts cadastrados</h1>
     </div>
     <div>
-        <a class="btn btn-secondary" href="/cadastro">Adicionar novo post</a>
+        <a class="btn btn-secondary" href="/cadastro">
+            <i class="fas fa-plus"></i>
+            Adicionar novo post
+        </a>
     </div>
 </div>
 
 {{#each posts}}
-<div class="card mb-4">
-    <div class="card-header font-weight-bold">
-        {{dataValues.titulo}}
+<div class="card border-dark mb-4">
+    <div class="card-header d-flex align-items-center justify-content-between font-weight-bold">
+        <div>
+            {{dataValues.titulo}}
+        </div>
+        <div>
+            <a href="/deletar/{{dataValues.id}}">
+                <button class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i>
+                    Exluir
+                </button>
+            </a>
+        </div>
     </div>
     <div class="card-body">
         <p>{{dataValues.conteudo}}</p>

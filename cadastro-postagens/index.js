@@ -59,6 +59,22 @@ app.post('/adicionar', function (req, res) {
         .catch(erro => res.send(`Ocorreu um erro: ${erro}`))
 })
 
+app.get('/deletar/:id', function (req, res) {
+    // Método para exclusão de registros dentro do banco
+    Post.destroy({
+            // Excluindo o dado pelo id passado por parâmetro na rota
+            where: {
+                'id': req.params.id
+            }
+        })
+        .then(function () {
+            res.send('<p>Postagem excluída com sucesso!</p>' + '<a href="/">Voltar para o início</a>')
+        })
+        .catch(function (erro) {
+            res.send(`Ocorreu um erro: ${erro}`)
+        })
+})
+
 // Criando o servidor com o express, o listen é uma função do tipo callback e com isso podemos executar alguns método dentro dela, ele deve ser o último método do arquivo
 app.listen(8081, function () {
     console.log('Servidor funcionando corretamente!')

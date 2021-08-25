@@ -9,6 +9,16 @@ const sequelize = new Sequelize('postapp', 'root', 'lucas98', {
     dialect: 'mysql'
 })
 
+// Verificando o status da conexão com o banco de dados
+sequelize.authenticate()
+    .then(function () {
+        console.log('Conexão com o banco de dados estabelecida com sucesso!')
+    })
+    .catch(function (erro) {
+        console.error(`Não foi possível realizar a conexão com o banco de dados: ${erro}`)
+    })
+
+// Exportando o Sequelize como módulo
 module.exports = {
     Sequelize: Sequelize,
     sequelize: sequelize,
