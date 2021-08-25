@@ -21,7 +21,20 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 // Rotas
-app.get('/', (req, res) => res.render('home'))
+app.get('/', function (req, res) {
+    // Retornando registros do banco de dados
+    Post.findAll({
+        order: [
+            // Ordenando do mais novo para o mais antigo
+            ['id', 'DESC']
+        ]
+    }).then(function (posts) {
+        res.render('home', {
+            // Listando os dados
+            posts: posts
+        })
+    })
+})
 
 app.get('/cadastro', function (req, res) {
     // Rederizando o arquivo de formulário handlebar que está na pasta views, não precisa colocar a extensão

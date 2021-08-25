@@ -1,1 +1,22 @@
-<h1>Lista dos posts cadastrados</h1>
+<div class="d-flex align-items-center justify-content-between mb-2">
+    <div>
+        <h1 class="font-weight-bold">Posts cadastrados</h1>
+    </div>
+    <div>
+        <a class="btn btn-secondary" href="/cadastro">Adicionar novo post</a>
+    </div>
+</div>
+
+{{#each posts}}
+<div class="card mb-4">
+    <div class="card-header font-weight-bold">
+        {{dataValues.titulo}}
+    </div>
+    <div class="card-body">
+        <p>{{dataValues.conteudo}}</p>
+    </div>
+    <div class="card-footer text-muted">
+        {{dataValues.createdAt}}
+    </div>
+</div>
+{{/each}}
