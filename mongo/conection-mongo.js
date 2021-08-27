@@ -18,3 +18,43 @@ mongoose.connect('mongodb://localhost/aprendendomongo', {
     .catch((erro) => {
         console.error(`Não foi possível realizar a conexão com o MongoDB: ${erro}`)
     })
+
+// Model usuários
+
+const UsuarioSchema = mongoose.Schema({
+    nome: {
+        type: String,
+        require: true
+    },
+    sobrenome: {
+        type: String,
+        require: true
+    },
+    email: {
+        type: String,
+        require: true
+    },
+    idade: {
+        type: Number,
+        require: true
+    },
+    pais: {
+        type: String,
+    }
+})
+
+// Definindo collection do mongo, funciona como se fosse a 'tabela'
+mongoose.model('usuarios', UsuarioSchema)
+
+const usuario = mongoose.model('usuarios')
+
+new usuario({
+        nome: 'Gerrad',
+        sobrenome: 'Moreno',
+        email: 'davi@email.com',
+        idade: 21,
+        pais: 'Espanha'
+    })
+    .save()
+    .then(() => console.log('Usuário criado com sucesso!'))
+    .catch(erro => console.log(`Não foi possível cadastrar o usuário: ${erro}`))
